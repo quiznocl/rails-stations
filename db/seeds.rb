@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Movie.create!( name: '1' ,  year: '10' ,
+    description:'説明1',image_url:'https://picsum.photos/200/300',
+    is_showing: 0)
+
+
+Movie.create!(name: '2' ,  year: '20' ,
+    description:'説明2',image_url:'https://picsum.photos/200/300',
+    is_showing: 1)
