@@ -1,0 +1,42 @@
+<h1>映画登録</h1>
+
+<body>
+    <%= form_with model: @movie,url:admin_movies_path do |form| %>
+        <div class=form>
+            <div>
+                <%= form.label :name, "映画タイトル" %>
+                <%= form.text_field :name %>
+            </div>
+
+            <div>
+                <%= form.label :year, "公開年" %>
+                <%= form.text_field :year %>
+            </div>
+
+            <div>
+                <%= form.label :is_showing, "上映中か" %>
+                <%= form.select :is_showing, [["上映中", "1"],["上映予定","0"]], include_blank: "" %>
+            </div>
+
+            <div>
+                <%= form.label :description ,"概要"%>
+                <%= form.text_area :description %>   
+            </div>
+
+            <div>
+                <%= form.label :image_url, "画像URL" %>
+                <%= form.text_field :image_url %>
+            </div>
+        </div>
+
+        <div>
+            <!--<%= form.submit "close"%>-->
+            <%= form.submit "save"%>
+        </div>
+    <% end %>
+
+    <div>
+    <%= flash[:danger] %>
+    </div>
+
+</body>
