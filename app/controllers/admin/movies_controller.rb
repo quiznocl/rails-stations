@@ -16,7 +16,22 @@ class Admin::MoviesController < ApplicationController
       redirect_to admin_movies_path
     else
       flash[:danger] = "エラー(入力フォームへ戻ります)"
-      render admin_movies_new_path, state:400
+      render new_admin_movie_path, state:400
+    end
+  end
+
+  def edit
+    @movie = Movie.find(params[:id]) 
+  end
+
+  def update
+    @movie = Movie.find(params[:id]) 
+
+    if @movie.update(user_params)
+      redirect_to admin_movies_path
+    else
+      flash[:danger] = "エラー(入力フォームへ戻ります)"
+      redirect_to edit_admin_movie_path, state:400
     end
   end
 

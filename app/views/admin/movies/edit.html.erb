@@ -1,37 +1,37 @@
-<h1>映画登録</h1>
+<h1>映画情報更新</h1>
 
 <body>
-    <%= form_with model: [:admin, @movie], local: true do |form| %>
+    <%= form_with model:[:admin, @movie], local: true do |form| %>
         <div class=form>
             <div>
                 <%= form.label :name, "映画タイトル" %>
-                <%= form.text_field :name %>
+                <%= form.text_field :name ,value:@movie.name%>
             </div>
 
             <div>
                 <%= form.label :year, "公開年" %>
-                <%= form.text_field :year %>
+                <%= form.text_field :year ,value:@movie.year%>
             </div>
 
             <div>
                 <%= form.label :is_showing, "上映中か" %>
-                <%= form.select :is_showing, [["上映中", "1"],["上映予定","0"]], include_blank: "" %>
+                <%= form.select :is_showing, [["上映中", "1"],["上映予定","0"]], include_blank: "", value:@movie.is_showing %>
             </div>
 
             <div>
                 <%= form.label :description ,"概要"%>
-                <%= form.text_area :description %>   
+                <%= form.text_area :description, value:@movie.description %>   
             </div>
 
             <div>
                 <%= form.label :image_url, "画像URL" %>
-                <%= form.text_field :image_url %>
+                <%= form.text_field :image_url,value:@movie.image_url %>
             </div>
         </div>
 
         <div>
             <!--<%= form.submit "close"%>-->
-            <%= form.submit "save"%>
+            <%= form.submit "save change"%>
         </div>
     <% end %>
 
