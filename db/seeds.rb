@@ -8,9 +8,20 @@
 
 Movie.create!( name: '1' ,  year: '10' ,
     description:'説明1',image_url:'https://picsum.photos/200/300',
-    is_showing: 0)
-
+    is_showing: 0);
 
 Movie.create!(name: '2' ,  year: '20' ,
     description:'説明2',image_url:'https://picsum.photos/200/300',
-    is_showing: 1)
+    is_showing: 1);
+
+5.times do |i|
+    Sheet.create(column: "#{i+1}", row: "a")
+end
+
+5.times do |j|
+    Sheet.create(column: "#{j+1}", row: "b")
+end
+
+5.times do |n|
+    Sheet.create(column: "#{n+1}", row: "c")
+end

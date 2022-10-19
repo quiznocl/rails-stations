@@ -1,5 +1,20 @@
 <h1>映画一覧</h1>
 
+<%= form_with url: movies_path, method: :get, local: true do |form| %>
+    <div>
+        <%= form.text_field :keyword %>
+        <%= form.submit '検索', name: nil %>
+    </div>
+
+    <%= form.radio_button :search_showing, :"2", checked:true %>
+    <%= form.label :search_showing, "全て", {value: :"2"} %>
+    <%= form.radio_button :search_showing, :"0" %>
+    <%= form.label :search_showing, "上映予定", {value: :"0"} %>
+    <%= form.radio_button :search_showing, :"1" %>
+    <%= form.label :search_showing, "上映中", {value: :"1"} %>
+<% end %>
+
+
 <table>
     <tr>
         <th>ID</th>
@@ -17,12 +32,12 @@
         <tr>
             <td><%=movie.id%></td>
             <td><%=movie.name%></td>
-            <td><%=movie.year%></td>
-            <td><%=movie.is_showing ? '上映中': '上映予定' %></td>
-            <td><%=movie.description%></td>
-            <td><a href="<%=movie.image_url%>"> <%=movie.image_url%></a></td>
-            <td><%=movie.created_at%></td>
-            <td><%=movie.updated_at%></td>
+             <td><%=movie.year%></td>
+             <td><%=movie.is_showing ? '上映中': '上映予定' %></td>
+              <td><%=movie.description%></td>
+             <td><a href="<%=movie.image_url%>"> <%=movie.image_url%></a></td>
+             <td><%=movie.created_at%></td>
+              <td><%=movie.updated_at%></td>
         </tr>
     <% end%>
 </table>

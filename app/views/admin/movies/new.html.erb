@@ -15,7 +15,7 @@
 
             <div>
                 <%= form.label :is_showing, "上映中か" %>
-                <%= form.select :is_showing, [["上映中", "1"],["上映予定","0"]], include_blank: "" %>
+                <%= form.radio_button :is_showing, 0 , checked: !(@movie.is_showing) %>上映予定<%= form.radio_button :is_showing, 1, checked: @movie.is_showing %>上映中
             </div>
 
             <div>
