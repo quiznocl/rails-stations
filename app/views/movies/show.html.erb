@@ -11,9 +11,26 @@
 <%= @movie.description %>
 
 
-<p>上映スケジュール</p>
-<% @schedules.each do |schedule| %>
-  <p><%= schedule.start_time.strftime("%H:%M") %>~
-  <%= schedule.end_time.strftime("%H:%M") %></p>
-<% end %>
+<body>
+    <%= form_with url: movie_reservation_path(movie_id: @movie.id), method: :get, local: true do |form| %>
+        <div class=form>
+    
+            <div>
+                日付選択
+                <%= form.select :date,[[Date.today,Date.today],[Date.today+1,Date.today+1],[Date.today+2,Date.today+2],
+                [Date.today+3,Date.today+3],[Date.today+4,Date.today+4],[Date.today+5,Date.today+5],[Date.today+6,Date.today+6]] ,include_blank: "日付を選択してください"%>
+            </div>
 
+            <div>
+                上映スケジュール
+                <%= form.select :schedule_id, @schedules.map{|schedule|
+                    [schedule.start_time.strftime("%H:%M") + "~" + schedule.end_time.strftime("%H:%M"),schedule.id]
+                },include_blank: "時間を選択してください"%>
+            </div>
+
+            <button type="submit"><%= form.submit ""%>座席を予約する</button>
+        </div>
+
+    <% end %>
+
+</body>

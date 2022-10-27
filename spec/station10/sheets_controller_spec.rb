@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe SheetsController, type: :controller do
+RSpec.describe ReservationsController, type: :controller do
   render_views
   describe 'Station10 GET /movies/:movie_id/reservation' do
     let!(:sheets) { create_list(:sheet, 15) }

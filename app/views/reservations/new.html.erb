@@ -1,0 +1,53 @@
+<h1>ご予約ページ</h1>
+
+<body>
+    <%= form_with model: @reservation, local: true do |form| %>
+        
+        <div class=form>
+            <div>
+                <%= form.label :movie_id, "映画作品" %>
+                <%= form.hidden_field :movie_id ,value:@movie.id%>
+                <%=@movie.name%>
+            </div>
+
+            <div>
+                <%= form.label :schedule_id, "上映スケジュール" %>
+                <%= form.hidden_field :schedule_id ,value:@schedule.id%>
+                <%= @schedule.start_time.strftime("%H:%M") %>~<%= @schedule.end_time.strftime("%H:%M") %>
+            </div>
+
+            <div>
+                <%= form.label :sheet_id, "座席" %>
+                <%= form.hidden_field :sheet_id ,value:@sheet.id%>
+                <%= @sheet.row %>-<%= @sheet.column %>
+            </div>
+
+
+            <div>
+                <%= form.label :date, "日付" %>
+                <%= form.hidden_field :date, value: @date %>
+                <%=@date%>
+            </div>
+
+            <div>
+                <%= form.label :email, "予約者メールアドレス" %>
+                <%= form.text_field :email , required: true%>
+            </div>
+
+            <div>
+                <%= form.label :name, "予約者氏名" %>
+                <%= form.text_field :name , required: true%>
+            </div>
+        </div>
+
+        <div>
+            <!--<%= form.submit "close"%>-->
+            <%= form.submit '予約確定'%>
+        </div>
+    <% end %>
+
+    <div>
+    <%= flash[:danger] %>
+    </div>
+
+</body>

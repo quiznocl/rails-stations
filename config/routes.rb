@@ -1,13 +1,18 @@
 Rails.application.routes.draw do
-  get 'sheets' => 'sheets#index'
-  resources :movies, only: [:show, :index]
+  
+  resources :movies, only: [:show, :index] do
+    get 'reservation' => 'reservations#index'
+    resources :schedules  do
+      resources :reservations, only: [:new]
+      get 'sheets' => 'sheets#index'
+    end
+  end
+
+  resources :reservations, only: [:create]
 
   namespace :admin do
     resources :movies , except: [:show]
     resources :schedules, except: [:show]
-
-    
-    get 'movies/:id/schedules/new' => 'schedules#new'
 
     """
     get 'movies' => 'movies#index'
@@ -20,7 +25,7 @@ Rails.application.routes.draw do
 
 
 
-    put 'movies/:movie_id/schedules/:schedule_id' => 'schedules/:id'
+
     """
   end
 end
