@@ -1,0 +1,31 @@
+<h1>スケジュール登録</h1>
+
+<body>
+    <%= form_with model: [:admin, @schedule], local: true do |form| %>
+        <div class=form>
+            <div>
+                <%= form.label :start_time, "開始時刻" %>
+                <%= form.text_field :start_time %>
+            </div>
+
+            <div>
+                <%= form.label :end_time, "終了時刻" %>
+                <%= form.text_field :end_time %>
+            </div>
+        </div>
+
+        <div>
+            <!--<%= form.submit "close"%>-->
+            <%= form.submit "save"%>
+        </div>
+    <% end %>
+
+    <div>
+        <%= button_to "削除する", admin_schedules_path(@schedule.id), method: :delete, data: {confirm: "削除しますか？"} %>
+    </div>
+
+    <div>
+    <%= flash[:danger] %>
+    </div>
+
+</body>

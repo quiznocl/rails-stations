@@ -23,6 +23,7 @@
         <th>上映中か</th>
         <th>概要</th>
         <th>画像URL</th>
+        <th>開始終了時間</th>
         <th>作成日時</th>
         <th>更新日時</th>
 
@@ -32,12 +33,17 @@
         <tr>
             <td><%=movie.id%></td>
             <td><%=movie.name%></td>
-             <td><%=movie.year%></td>
-             <td><%=movie.is_showing ? '上映中': '上映予定' %></td>
-              <td><%=movie.description%></td>
-             <td><a href="<%=movie.image_url%>"> <%=movie.image_url%></a></td>
-             <td><%=movie.created_at%></td>
-              <td><%=movie.updated_at%></td>
+            <td><%=movie.year%></td>
+            <td><%=movie.is_showing ? '上映中': '上映予定' %></td>
+            <td><%=movie.description%></td>
+            <td><img src="<%=movie.image_url%>" ></td>
+            <td>
+                <% movie.schedules.each do |schedule| %>
+                    <p><%= schedule.start_time %>~<%= schedule.end_time %></p>
+                <% end%>
+            </td>
+            <td><%=movie.created_at%></td>
+            <td><%=movie.updated_at%></td>
         </tr>
     <% end%>
 </table>

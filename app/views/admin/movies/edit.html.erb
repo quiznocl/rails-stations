@@ -1,5 +1,11 @@
 <h1>映画情報更新</h1>
 
+<p>上映スケジュール</p>
+<% @movie.schedules.each do |schedule| %>
+  <p><%= schedule.start_time.strftime("%H:%M") %>~
+  <%= schedule.end_time.strftime("%H:%M") %></p>
+<% end %>
+
 <body>
     <%= form_with model:[:admin, @movie], local: true do |form| %>
         <div class=form>

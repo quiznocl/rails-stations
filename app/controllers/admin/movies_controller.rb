@@ -38,6 +38,7 @@ class Admin::MoviesController < ApplicationController
 
   def edit
     @movie = Movie.find(params[:id]) 
+    @schedules=@movie.schedules
   end
 
   def update
@@ -59,6 +60,11 @@ class Admin::MoviesController < ApplicationController
     else
       redirect_to edit_admin_movie_path, state:400
     end
+  end
+
+  def show
+    @movie=Movie.find(params[:id])
+    @schedules=@movie.schedules
   end
 
   

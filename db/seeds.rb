@@ -25,3 +25,10 @@ end
 5.times do |n|
     Sheet.create(column: "#{n+1}", row: "c")
 end
+
+Schedule.create!(movie_id:"1",start_time: "2022-01-01 19:30:00 UTC", end_time: "2022-01-01 18:30:00 UTC")
+Schedule.create!( movie_id:"2",start_time: "2022-01-18 9:30 UTC", end_time: "2022-01-18 10:00 UTC")
+Schedule.create!(movie_id:"1",start_time: "2022-09-01 18:30 UTC", end_time: "2022-09-01 20:30 UTC")
+Schedule.create!( movie_id:"2",start_time: "2022-06-01 7:30 UTC", end_time: "2022-06-01 9:00 UTC")
+Schedule.create!(movie_id:"1",start_time: "2023-01-08 10:30 UTC", end_time: "2023-01-08 12:30 UTC")
+Schedule.create!( movie_id:"2",start_time: "2022-07-01 11:30 UTC", end_time: "2022-07-01 14:00 UTC")

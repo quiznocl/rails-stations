@@ -1,0 +1,19 @@
+<h1>映画詳細</h1>
+
+<img src=<%= @movie.image_url %>>
+<% if @movie.is_showing == true %>
+  <%= '公開中' %>
+<% else %>
+  <%= '公開予定' %>
+<% end %>
+<%= @movie.name %>
+<%= @movie.year %>
+<%= @movie.description %>
+
+
+<p>上映スケジュール</p>
+<% @schedules.each do |schedule| %>
+  <p><%= schedule.start_time.strftime("%H:%M") %>~
+  <%= schedule.end_time.strftime("%H:%M") %></p>
+<% end %>
+
