@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :movies , except: [:show]
     resources :schedules, except: [:show]
+    resources :reservations, except: [:edit]
 
     """
     get 'movies' => 'movies#index'

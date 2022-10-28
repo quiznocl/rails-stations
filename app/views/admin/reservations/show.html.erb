@@ -1,0 +1,59 @@
+<h1>映画予約編集</h1>
+
+<body>
+    <%= form_with model: [:admin, @reservation], local: true do |form| %>
+        
+        <div class=form>
+            <div>
+                <%= form.label :movie_id, "映画作品" %>
+                <%= form.hidden_field :movie_id ,value:@movie.id%>
+                <%=@movie.name%>
+            </div>
+
+            <div>
+                <%= form.label :schedule_id, "上映スケジュール" %>
+                <%= form.hidden_field :schedule_id ,value:@schedule.id%>
+                <%= @schedule.start_time.strftime("%H:%M") %>~<%= @schedule.end_time.strftime("%H:%M") %>
+            </div>
+            
+
+            <div>
+                <%= form.label :sheet_id, "座席" %>
+                <%= form.hidden_field :sheet_id ,value:@sheet.id%>
+                <%= @sheet.row %>-<%= @sheet.column %>
+            </div>
+
+
+            <div>
+                <%= form.label :date, "日付" %>
+                <%= form.hidden_field :date, value: @date %>
+                <%=@date%>
+            </div>
+
+            <div>
+                <%= form.label :email, "予約者メールアドレス" %>
+                <%= form.text_field :email , required: true, value: @reservation.email%>
+            </div>
+
+            <div>
+                <%= form.label :name, "予約者氏名" %>
+                <%= form.text_field :name , required: true, value: @reservation.name%>
+            </div>
+        </div>
+
+        <div>
+            <!--<%= form.submit "close"%>-->
+            <%= form.submit '予約編集'%>
+        </div>
+    <% end %>
+
+    <div>
+    <%= flash[:danger] %>
+    </div>
+
+</body>
+
+
+<div>
+    <%= button_to "削除する", admin_reservation_path(@reservation.id), method: :delete, data: {confirm: "削除しますか？"} %>
+</div>

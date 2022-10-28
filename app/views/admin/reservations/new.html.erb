@@ -1,0 +1,50 @@
+<h1>予約追加</h1>
+
+<body>
+    <%= form_with model: [:admin, @reservation], local: true do |form| %>
+        
+        <div class=form>
+
+            <div>
+                上映スケジュール
+                <%= form.select :schedule_id, @schedules.map{|schedule|
+                    ["映画名「#{schedule.movie.name}」"+ schedule.start_time.strftime("%H:%M") + "~" + schedule.end_time.strftime("%H:%M"),schedule.id ,schedule.id]
+                },include_blank: "上映スケジュールを選択してください"%>
+            </div>
+
+            <div>
+                座席
+                <%= form.select :sheet_id, @sheets.map{|sheet|
+                    ["#{sheet.row}-#{sheet.column}" ,sheet.id]
+                },include_blank: "座席を選択してください"%>
+            </div>
+
+
+            <div>
+                日付選択
+                <%= form.select :date,[[Date.today,Date.today],[Date.today+1,Date.today+1],[Date.today+2,Date.today+2],
+                [Date.today+3,Date.today+3],[Date.today+4,Date.today+4],[Date.today+5,Date.today+5],[Date.today+6,Date.today+6]] ,include_blank: "日付を選択してください"%>
+            </div>
+
+            <div>
+                <%= form.label :email, "予約者メールアドレス" %>
+                <%= form.text_field :email , required: true%>
+            </div>
+
+            <div>
+                <%= form.label :name, "予約者氏名" %>
+                <%= form.text_field :name , required: true%>
+            </div>
+        </div>
+
+        <div>
+            <!--<%= form.submit "close"%>-->
+            <%= form.submit '予約確定'%>
+        </div>
+    <% end %>
+
+    <div>
+    <%= flash[:danger] %>
+    </div>
+
+</body>
