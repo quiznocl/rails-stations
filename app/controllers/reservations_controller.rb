@@ -35,7 +35,7 @@ class ReservationsController < ApplicationController
           flash[:success] = "予約が完了しました"
           redirect_to movie_path(@movie.id)
         else
-          #flash[:danger] = "#{@reservation.save!}"
+          flash[:alert] = "予約済みの席ですよ"
           redirect_to movie_schedule_sheets_path(movie_id: @movie.id, schedule_id: @schedule.id, date: @date), :status => 302
         end
     end

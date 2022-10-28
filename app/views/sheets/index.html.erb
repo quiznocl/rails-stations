@@ -11,15 +11,42 @@
 
     <% @sheets.each_slice(5) do |sheet1,sheet2,sheet3,sheet4,sheet5|%>
         <tr>
-            <td><%=sheet1.row%>-<%=sheet1.column%></td>
-            <td><%=sheet2.row%>-<%=sheet2.column%></td>
-            <td><%=sheet3.row%>-<%=sheet3.column%></td>
-            <td><%=sheet4.row%>-<%=sheet4.column%></td>
-            <td><%=sheet5.row%>-<%=sheet5.column%></td>
+            <% if @reserveds.where(sheet_id: sheet1.id).exists? %> 
+                <td><%=sheet1.row%>-<%=sheet1.column%></td>
+            <% else %>
+                <td> <%= link_to "#{sheet1.row}-#{sheet1.column}", new_movie_schedule_reservation_path(@movie.id, @schedule.id, sheet_id: sheet1.id, date: @date) %> </td>
+            <%end%>
+            
+            <% if @reserveds.where(sheet_id: sheet2.id).exists? %>
+                <td><%=sheet2.row%>-<%=sheet2.column%></td>
+            <% else %>
+                <td> <%= link_to "#{sheet2.row}-#{sheet2.column}", new_movie_schedule_reservation_path(@movie.id, @schedule.id, sheet_id: sheet2.id, date: @date) %> </td>
+            <%end%>
+
+            <% if @reserveds.where(sheet_id: sheet3.id).exists? %>
+                <td><%=sheet3.row%>-<%=sheet3.column%></td>
+            <% else %>
+                <td> <%= link_to "#{sheet3.row}-#{sheet3.column}", new_movie_schedule_reservation_path(@movie.id, @schedule.id, sheet_id: sheet3.id, date: @date) %> </td>
+            <%end%>
+
+            <% if @reserveds.where(sheet_id: sheet4.id).exists?%>
+                <td><%=sheet4.row%>-<%=sheet4.column%></td>
+            <% else %>
+                <td> <%= link_to "#{sheet4.row}-#{sheet4.column}", new_movie_schedule_reservation_path(@movie.id, @schedule.id, sheet_id: sheet4.id, date: @date) %> </td>            
+            <%end%>
+
+            <% if @reserveds.where(sheet_id: sheet5.id).exists? %>
+                <td><%=sheet5.row%>-<%=sheet5.column%></td>
+            <% else %>
+                <td> <%= link_to "#{sheet5.row}-#{sheet5.column}", new_movie_schedule_reservation_path(@movie.id, @schedule.id, sheet_id: sheet5.id, date: @date) %> </td>
+            <%end%>
+
         </tr>
     <% end%>
 </table>
 
-<div>
-    <%= flash[:danger] %>
-</div>
+<% @reserveds.each do |reserved|%>
+    <%=reserved.sheet_id%>
+<% end%>
+
+<%= flash[:alert] %>
